@@ -10,10 +10,10 @@
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
     @livewireStyles
 </head>
-<body class="bg-light">
+<body class="container container-ld bg-light">
     {{ $slot }}
     
     <!-- Bootstrap 5 JS -->
