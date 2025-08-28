@@ -108,7 +108,7 @@ class TodoList extends Component
             return view('livewire.todo-list', compact('todos'));
         }
         // display todos
-        $todos = Todo::simplePaginate(5);
+        $todos = Todo::latest()->simplePaginate(5);
         return view('livewire.todo-list', compact('todos'));
     }
 }
