@@ -53,7 +53,7 @@
 
             <div class="mb-3">
                 {{-- search  --}}
-                <div class="d-flex justify-content-between">
+                <div class="d-flex  flex-wrap align-items-center justify-content-between">
                     <h3 class="text-start text-primary">My Todo List</h3>
                     <input type="text" wire:model.live.debounce="filter" placeholder="Search todos..."
                         class="search">
