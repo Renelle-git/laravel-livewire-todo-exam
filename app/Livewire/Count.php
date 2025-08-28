@@ -17,8 +17,11 @@ class Count extends Component
     //     $this->totalTodos = $totalTodos;
     // }
 
-    protected $listeners = ['todoCountsUpdated' => 'updateCounts'];
 
+    
+// listen to the dispatch event 
+    protected $listeners = ['todoCountsUpdated' => 'updateCounts'];
+    
     public function updateCounts($totalTodos, $totalCompleted, $totalIncomplete)
     {
         $this->totalTodos = $totalTodos;

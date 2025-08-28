@@ -1,4 +1,4 @@
-
+{{-- display counts --}}
 <div class="d-flex justify-content-evenly flex-wrap">
     <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
         <div class="card-body">
