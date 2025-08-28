@@ -11,7 +11,13 @@ class TodoList extends Component
 {
     use WithPagination;
 
-    public $filter='';
+    // Counts
+    public $totalTodos;
+    public $totalCompleted;
+    public $totalIncomplete;
+
+
+    public $filter = '';
 
     #[Rule('required|min:3|max:255')]
     public $title = '';
@@ -27,7 +33,7 @@ class TodoList extends Component
         ]);
 
         $this->reset(['title']);
-
+        $this->todoCounts();
         session()->flash('message', 'Todo added successfully!');
     }
 
@@ -48,6 +54,7 @@ class TodoList extends Component
         ]);
 
         $this->reset(['title']);
+        $this->todoCounts();
 
         session()->flash('message', 'Todo updated successfully!');
     }
@@ -61,21 +68,37 @@ class TodoList extends Component
     {
         $todo = Todo::findOrFail($id);
         $todo->update(['completed' => !$todo->completed]);
+        $this->todoCounts();
     }
 
     public function deleteTodo($id)
     {
         Todo::findOrFail($id)->delete();
+        $this->todoCounts();
         session()->flash('message', 'Todo deleted successfully!');
+    }
+
+    public function mount()
+    {
+        $this->todoCounts();
+    }
+
+    public function todoCounts()
+    {
+        $this->totalTodos = Todo::whereNotNull('title')->count();
+        $this->totalCompleted = Todo::where('completed', 1)->count();
+        $this->totalIncomplete = Todo::where('completed', 0)->count();
+
+        $this->dispatch('todoCountsUpdated', $this->totalTodos, $this->totalCompleted, $this->totalIncomplete);
     }
 
     public function render()
     {
-        if($this->filter){
+        if ($this->filter) {
             $todos = Todo::where('title', 'LIKE', "%{$this->filter}%")->simplePaginate(5);
             return view('livewire.todo-list', compact('todos'));
         }
-        
+
         $todos = Todo::simplePaginate(5);
         return view('livewire.todo-list', compact('todos'));
     }

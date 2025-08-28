@@ -9,6 +9,9 @@
                 </div>
             @endif
 
+            {{-- <div wire:poll.5s="todoCounts"></div> --}}
+            <livewire:count :totalTodos="$totalTodos" :totalCompleted="$totalCompleted" :totalIncomplete="$totalIncomplete" />
+
             {{-- Add/Edit Todo Form --}}
             <div class="card shadow mb-4">
                 <div class="card-header bg-primary text-white">

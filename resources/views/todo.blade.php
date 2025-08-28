@@ -1,3 +1,3 @@
 <x-layouts.app title="Todo List App">
-    <livewire:todo-list lazy="on-load"/>
+    <livewire:todo-list/>
 </x-layouts.app>
